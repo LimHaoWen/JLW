@@ -1,0 +1,18 @@
+# Version control
+.git
+.gitignore
+
+# Docker related files
+.dockerignore
+Dockerfile*
+docker-compose.yml
+
+# Documentation and miscellaneous
+README.md
+.vscode
+*.log
+
+# Configuration files
+.env
+*.key
+*.pem
