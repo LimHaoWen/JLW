@@ -3,7 +3,7 @@ name: jlw
 services:
   nextjs:
     build:
-      context: ../
+      context: .
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
@@ -13,6 +13,9 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     env_file:
       - "./.env"
+    volumes:
+      - ./:/app
+      - /app/node_modules
     depends_on:
       - postgres
 
