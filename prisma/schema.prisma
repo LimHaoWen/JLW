@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-arm64-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Users {
+  user_id Int @id @unique @default(autoincrement())
+  username String @unique
+  email String @unique
+  password String
+  role_type Role @default(USER)
+
+  // Relationships
+  transactions Transactions[]
+  
+  @@map("users")
+}
+
+model Transactions {
+  transaction_id String @id @default(uuid())
+  user_id Int
+  total_cost Float
+  created_at DateTime @default(now())
+
+  // Relationships
+  transaction_items TransactionItems[]
+  users Users @relation(fields: [user_id], references: [user_id])
+
+  @@map("transactions")
+}
+
+model TransactionItems {
+  tx_items_id String @id @default(uuid())
+  transaction_id String
+  item_id Int
+  quantity Int
+  cost Float
+
+  // Relationships
+  transaction Transactions @relation(fields: [transaction_id], references: [transaction_id])
+  item Items @relation(fields: [item_id], references: [item_id])
+
+  @@map("order_items")
+}
+
+model Items {
+  item_id Int @id @default(autoincrement())
+  name String
+  cost Float
+  description String
+  allergens String
+
+  // Relationships
+  transaction_items TransactionItems[]
+
+  @@map("items")
+}
