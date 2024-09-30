@@ -1,10 +1,10 @@
-import Header from "./header"
+import Item from "./components/itemCard"
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <>
-    <Header/>
-    <h1 className={`text-black p-4`}>Hello</h1>
-    </> 
+    </>
   )
 }
+
+export default Home

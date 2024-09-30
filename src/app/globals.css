@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Root styles */
-* {
-    background-color: white;
+
+@layer components {
+    .btn-hover-primary {
+        @apply hover:bg-white hover:text-darkverm hover:border hover:border-darkverm
+    }
+    .btn-hover-secondary {
+        @apply hover:bg-darkverm hover:text-white
+    }
 }
