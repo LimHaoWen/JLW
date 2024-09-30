@@ -19,7 +19,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@prism/*": ["./src/lib/prima.ts"]
+      "@prism/*": ["./src/lib/prima.ts"],
+      "@/auth": ["./src/lib/auth.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
