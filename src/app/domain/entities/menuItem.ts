@@ -1,7 +1,7 @@
 type MenuItem = {
-    itemID: number;
+    item_id: number;
     name: string;
     cost: number;
     description: string;
-    allegens: string;
+    allergens: string;
 }

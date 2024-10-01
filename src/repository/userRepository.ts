@@ -16,11 +16,10 @@ export class UserRepository implements IUserRepository {
     });
 
     if (!user) {
-      logger.error(`[userRepository] error creating account`); 
-      throw new Error("[userRepository] error creating account");
+      logger.error(`[userRepository] error creating account.`); 
+      throw new Error("[userRepository] error creating account.");
     }
-    
-
+  
     return user
   }
 
@@ -28,34 +27,22 @@ export class UserRepository implements IUserRepository {
     const user = await prisma.users.findUnique({ where: { email: email }});
 
     if (!user) {
-      logger.info(`[userRepository] email ${email} does not exist`); 
+      logger.info(`[userRepository] email ${email} does not exist.`); 
       return null;
     }
 
-    return { 
-      user_id: user.user_id, 
-      username: user.username,
-      email: user.email, 
-      password: user.password, 
-      role_type: user.role_type
-    };
+    return user;
   }
 
   async getUserByUsername(username: string): Promise<User | null> {
     const user = await prisma.users.findUnique({ where: { username: username }});
 
     if (!user) {
-      logger.info(`[userRepository] username ${username} does not exist`); 
+      logger.info(`[userRepository] username ${username} does not exist.`); 
       return null;
     }
 
-    return { 
-      user_id: user.user_id, 
-      username: user.username,
-      email: user.email, 
-      password: user.password, 
-      role_type: user.role_type
-    };
+    return user;
   }
 }
 

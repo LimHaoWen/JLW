@@ -56,7 +56,7 @@ model TransactionItems {
   transaction Transactions @relation(fields: [transaction_id], references: [transaction_id])
   item Items @relation(fields: [item_id], references: [item_id])
 
-  @@map("order_items")
+  @@map("transaction_items")
 }
 
 model Items {
