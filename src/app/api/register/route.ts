@@ -11,13 +11,13 @@ export async function POST(req: NextRequest) {
 
     const existingUser = await userService.getUserByEmail(user.email);
     
-    if (existingUser !== null) {
+    if (existingUser !== undefined) {
       logger.info("[userHandler] user with this email already exists.")
       return NextResponse.json({ error: "User with this email already exists." }, { status: 400 });
     }
 
     const existingUsername = await userService.getUserByUsername(user.username);
-    if (existingUsername !== null) {
+    if (existingUsername !== undefined) {
       logger.info("[userHandler] username already exists.")
       return NextResponse.json({ error: "Username already exists." }, { status: 400 });
     }
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
       user: newUser
     }, { status: 201 });
   } catch (error) {
-    logger.error("[userHandler] error creating user:" + error);
+    logger.error("[userHandler] unexpected error creating user:" + error);
     return NextResponse.json({ error: "Internal server error." }, { status: 500 });
   }
 }
