@@ -19,7 +19,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     throw new Error("Invalid credentials");
                 };
 
-                let user: User | null
+                let user: User | undefined
 
                 if (String(credentials.identifier).includes("@")) {
                     user = await userService.getUserByEmail(credentials.identifier)
@@ -27,7 +27,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     user = await userService.getUserByUsername(credentials.identifier)
                 }
         
-                if (!user || user == null) {
+                if (!user || user == undefined) {
                     return null;
                 }
 

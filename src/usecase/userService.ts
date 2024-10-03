@@ -1,6 +1,6 @@
 import { User } from '../app/domain/entities/user';
 import { userRepository, UserRepository } from "../repository/userRepository";
-import IUserService from "@/app/domain/services/user/IUserService";
+import IUserService from "@/app/domain/services/IUserService";
 import bcrypt from "bcryptjs";
 import { CreatedUserInfoDTO } from './dto';
 
@@ -26,19 +26,19 @@ export class UserService implements IUserService{
     return newUserDTO
   }
 
-  async getUserByEmail(email: string): Promise<User | null> {
+  async getUserByEmail(email: string): Promise<User | undefined> {
     const user = await this.userRepository.getUserByEmail(email);
-    if (user == null) {
-      return null;
+    if (!user) {
+      return undefined;
     }
     return user;
   }
 
-  async getUserByUsername(username: string): Promise<User | null> {
+  async getUserByUsername(username: string): Promise<User | undefined> {
     const user = await this.userRepository.getUserByUsername(username);
 
-    if (user == null) {
-      return null;
+    if (!user) {
+      return undefined;
     }
 
     return user;
