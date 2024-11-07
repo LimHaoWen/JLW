@@ -15,7 +15,7 @@ export class UserService implements IUserService{
   async createUser(username: string, email: string, password: string): Promise<CreatedUserInfoDTO> {
     const hashedPassword = await bcrypt.hash(password, 10);
     
-    const newUser = await this.userRepository.createUser(username, email, hashedPassword)
+    const newUser = await this.userRepository.createUser(username, email, hashedPassword);
 
     const newUserDTO: CreatedUserInfoDTO = {
       username: newUser.username,
@@ -23,7 +23,7 @@ export class UserService implements IUserService{
       role_type: newUser.role_type
     }
 
-    return newUserDTO
+    return newUserDTO;
   }
 
   async getUserByEmail(email: string): Promise<User | undefined> {
@@ -42,6 +42,26 @@ export class UserService implements IUserService{
     }
 
     return user;
+  }
+
+  async updateUserPassword(email: string, newHashedPassword: string): Promise<User | undefined> {
+    const user = await this.userRepository.updateUserPassword(email, newHashedPassword);
+
+    if (!user) {
+      return undefined;
+    }
+
+    return user;
+  }
+
+  async deleteUserByEmail(email: string): Promise<User | undefined> {
+    const deletedUser = await this.userRepository.deleteUserByEmail(email);
+
+    if (!deletedUser) {
+      return undefined;
+    }
+
+    return deletedUser;
   }
 }
 
