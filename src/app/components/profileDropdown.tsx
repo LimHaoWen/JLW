@@ -9,8 +9,8 @@ interface ProfileProps {
 const ProfileDropdown: React.FC<ProfileProps> = ({ isProfile, closeAll }) => {
 
     const handleSignOut = () => {
-        closeAll()
-        SignOut()
+        closeAll();
+        SignOut("/", true);
     }
 
     return (
