@@ -5,19 +5,19 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import CloseButton from "../components/closeButton";
 import { UserFormInputDTO } from "../api/register/dto";
-import validatePassword from "./passValidate";
+import validatePassword from "@/lib/validatePassword";
 
-const SignupForm: React.FC = () => {
+const SignupForm = () => {
     const router = useRouter();
-    const { data: session } = useSession()
+    const { data: session } = useSession();
     if (session?.user) {
-        router.push("/")
+        router.push("/");
     }
 
-    const [error, setError] = useState("");
+    const [error, setError] = useState<string>("");
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+        e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
         const email = formData.get("email") as string;
@@ -26,17 +26,17 @@ const SignupForm: React.FC = () => {
         const confirmPassword = formData.get("confirm-password") as string;
 
         if (password !== confirmPassword) {
-            setError("Passwords do not match.")
+            setError("Passwords do not match.");
             return;
         }
 
-        const { valid, message } = validatePassword(password)
+        const { valid, message } = validatePassword(password);
         if (!valid) {
-            setError(message)
+            setError(message);
             return;
         }
 
-        setError("")
+        setError("");
 
         const userData: UserFormInputDTO = {
             email, 
@@ -55,17 +55,16 @@ const SignupForm: React.FC = () => {
         const data = await res.json();
 
         if (res.ok) {
-            router.push("/login")
+            router.push("/login");
         } else {
-
-            setError(data.error)
+            setError(data.error);
         }
     }
 
     return (
     <>
     <div className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute flex justify-center items-center z-20">
-        <CloseButton/>
+        <CloseButton route="/"/>
         <div className="bg-white p-14 rounded-2xl shadow-lg w-full block">
         <h2 className="text-2xl font-bold text-center mb-4">Join us now for perks and more!</h2>
         <form className="space-y-4" onSubmit={handleSubmit}>

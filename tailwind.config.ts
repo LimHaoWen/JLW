@@ -27,7 +27,8 @@ const config: Config = {
       "vermillion": "#ff5032",
       "darkverm": "#dc321e",
       "lightverm": "#fff5eb",
-      "red": "#ff3333"
+      "red": "#ff3333",
+      "green": "#4bb543"
     },
   },
   plugins: [],

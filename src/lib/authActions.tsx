@@ -21,8 +21,9 @@ export async function SignIn(previousState: unknown, formData: FormData) {
     }
 }
 
-export async function SignOut() {
+export async function SignOut(route: string, redirect: boolean) {
     await signOut({
-        redirectTo: "/"
+        redirectTo: route,
+        redirect: redirect
     })
 }

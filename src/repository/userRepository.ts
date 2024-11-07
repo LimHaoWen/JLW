@@ -44,6 +44,39 @@ export class UserRepository implements IUserRepository {
 
     return user;
   }
+
+  async updateUserPassword(email: string, newHashedPassword: string): Promise<User | undefined> {
+    const user = await prisma.users.update({
+      where: {
+        email: email,
+      },
+      data: {
+        password: newHashedPassword,
+      }
+    });
+
+    if (!user) {
+      logger.error(`[userRepository] user with ${email}, failed to update password.`); 
+      return undefined;
+    }
+
+    return user;
+  }
+
+  async deleteUserByEmail(email: string): Promise<User | undefined> {
+    const deletedUser = await prisma.users.delete({
+      where: {
+        email: email,
+      },
+    });
+
+    if (!deletedUser) {
+      logger.error(`[userRepository] user with ${email}, failed to delete account.`); 
+      return undefined;
+    }
+
+    return deletedUser;
+  }
 }
 
 export const userRepository = new UserRepository();

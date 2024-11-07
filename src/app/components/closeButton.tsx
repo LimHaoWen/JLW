@@ -5,11 +5,15 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import cross from "../../../public/cross.png";
 
-const CloseButton: React.FC = () => {
+type ButtonProps = {
+    route: string;
+}
+
+const CloseButton = ({ route }: ButtonProps) => {
     const router = useRouter();
     
     const handleClick = () => {
-        router.push("/");
+        router.push(route);
     };
 
     return (

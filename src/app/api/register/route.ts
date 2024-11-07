@@ -12,14 +12,14 @@ export async function POST(req: NextRequest) {
     const existingUser = await userService.getUserByEmail(user.email);
     
     if (existingUser !== undefined) {
-      logger.info("[userHandler] user with this email already exists.")
-      return NextResponse.json({ error: "User with this email already exists." }, { status: 400 });
+      logger.info("[userHandler] user with this email already exists.");
+      return NextResponse.json({ error: "Email is already registered." }, { status: 400 });
     }
 
     const existingUsername = await userService.getUserByUsername(user.username);
     if (existingUsername !== undefined) {
-      logger.info("[userHandler] username already exists.")
-      return NextResponse.json({ error: "Username already exists." }, { status: 400 });
+      logger.info("[userHandler] username already exists.");
+      return NextResponse.json({ error: "Username is unavailable." }, { status: 400 });
     }
 
 

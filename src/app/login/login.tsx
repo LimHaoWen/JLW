@@ -6,15 +6,15 @@ import { useSession } from "next-auth/react";
 import CloseButton from "../components/closeButton";
 import { SignIn } from "../../lib/authActions";
 
-const LoginForm: React.FC = () => {
+const LoginForm = () => {
     const router = useRouter();
 
-    const { data: session } = useSession()
-    if (session?.user) {
-        router.push("/")
+    const { status } = useSession();
+    if (status === "authenticated") {
+        router.push("/");
     }
 
-    const [data, action, isPending]= useFormState(SignIn, undefined)
+    const [data, action, isPending]= useFormState(SignIn, undefined);
 
     const handleRedirect = () => {
         router.push("/register");
@@ -24,7 +24,7 @@ const LoginForm: React.FC = () => {
     <>
     <div className={`top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 absolute flex justify-center items-center z-20`}>
         <div className="bg-white p-8 rounded-2xl shadow-lg w-full">
-        <CloseButton/>
+        <CloseButton route="/"/>
         <form className="space-y-4" action={action}>
             <div>
                 <label htmlFor="identifier" className="block font-semibold mb-1">Username/email</label>
