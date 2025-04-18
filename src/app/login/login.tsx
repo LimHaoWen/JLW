@@ -4,7 +4,7 @@ import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import CloseButton from "../components/closeButton";
-import { SignIn } from "../../lib/authActions";
+import { SignIn } from "@/lib/auth/authActions";
 
 const LoginForm = () => {
     const router = useRouter();

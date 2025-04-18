@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SignOut } from "../../lib/authActions";
+import { SignOut } from "@/lib/auth/authActions";
 
 interface ProfileProps {
     isProfile: boolean

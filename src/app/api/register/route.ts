@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { userService } from "@/usecase/userService";
 import { UserFormInputDTO } from "./dto";
-import { getLogger } from "@/lib/logUtil";
+import { getLogger } from "@/lib/log/logUtil";
 
 const logger = getLogger("account");
 

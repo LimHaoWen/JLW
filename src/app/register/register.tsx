@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import CloseButton from "../components/closeButton";
 import { UserFormInputDTO } from "../api/register/dto";
-import validatePassword from "@/lib/validatePassword";
+import validatePassword from "@/lib/auth/validatePassword";
 
 const SignupForm = () => {
     const router = useRouter();

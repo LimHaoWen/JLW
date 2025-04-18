@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,10 +23,17 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@prism/*": ["./src/lib/prima.ts"],
-      "@/auth": ["./src/lib/auth.ts"]
-    }
+      "@/prisma/*": ["./src/lib/prisma/prisma.ts"],
+      "@/auth": ["./src/lib/auth/auth.ts"]
+    },
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

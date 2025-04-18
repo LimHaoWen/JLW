@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { User } from "next-auth";
-import { SignOut } from "@/lib/authActions";
+import { SignOut } from "@/lib/auth/authActions";
 import { useRouter } from "next/navigation";
 import { usernameDTO } from "../api/delete-account/dto";
 import Image from "next/image";

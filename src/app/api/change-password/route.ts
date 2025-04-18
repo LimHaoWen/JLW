@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { userService } from '@/usecase/userService';
 import bcrypt from "bcryptjs";
-import { auth } from '@/lib/auth';
-import { getLogger } from "@/lib/logUtil";
+import { auth } from '@/lib/auth/auth';
+import { getLogger } from "@/lib/log/logUtil";
 
 const logger = getLogger("account");
 

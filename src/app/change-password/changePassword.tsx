@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-import validatePassword from "@/lib/validatePassword";
+import validatePassword from "@/lib/auth/validatePassword";
 import { ChangePasswordDTO } from "../api/change-password/dto";
 
 const ChangePassword = () => {
