@@ -1,7 +1,7 @@
-import { prisma } from "@prism/prisma";
+import { prisma } from "@/lib/prisma/prisma";
 import { User } from "../app/domain/entities/user";
 import IUserRepository from "@/app/domain/repositories/IUserRepository";
-import { getLogger } from "@/lib/logUtil";
+import { getLogger } from "@/lib/log/logUtil";
 
 const logger = getLogger("account");
 
