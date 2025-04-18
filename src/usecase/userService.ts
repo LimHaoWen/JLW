@@ -1,14 +1,15 @@
-import { User } from '../app/domain/entities/user';
-import { userRepository, UserRepository } from "../repository/userRepository";
 import IUserService from "@/app/domain/services/IUserService";
+import IUserRepository from "@/app/domain/repositories/IUserRepository";
+import { User } from '../app/domain/entities/user';
+import { userRepository } from "../repository/userRepository";
 import bcrypt from "bcryptjs";
 import { CreatedUserInfoDTO } from './dto';
 
 
 export class UserService implements IUserService{
-  private userRepository: UserRepository;
+  private userRepository: IUserRepository;
 
-  constructor(userRepository: UserRepository) {
+  constructor(userRepository: IUserRepository) {
     this.userRepository = userRepository;
   }
 
