@@ -57,7 +57,7 @@ const SignupForm = () => {
         if (res.ok) {
             router.push("/login");
         } else {
-            setError(data.error);
+            setError(data.err);
         }
     }
 
